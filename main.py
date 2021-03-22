@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import re
 import json
 from operator import itemgetter 
-import deepdiff
 
 app = Flask(__name__)
 
@@ -90,12 +89,19 @@ def view_third_page():
         sum_result = 0
         sum_frequency2 = 0
 
+        frequency2_total = {}
+
         result_values = set(result)
         frequency2_values = set(frequency2)
 
         for name in result_values.intersection(frequency2_values):
             sum_result = sum_result + result[name]
             sum_frequency2 = sum_frequency2 + frequency2[name]
+            frequency2_total[name] = frequency2[name]
+
+        #print(frequency2_total)
+
+        str_frequency2_total = str(frequency2_total)
 
         try:
             similarity = ((sum_frequency2/sum_result)*100)
@@ -107,7 +113,7 @@ def view_third_page():
         else:
             str_similarity = str(similarity)
 
-        return render_template("index3.html", title="Similarity", content = ("Similarity Rate : " + "%" + str_similarity))
+        return render_template("index3.html", title="Similarity", content = json.dumps(frequency2_total, indent = 1) + "\n\n\n              Similarity Rate : " + "%" + str_similarity)
     else:    
         return render_template("index3.html", title="Similarity")
 
