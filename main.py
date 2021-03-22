@@ -107,7 +107,7 @@ def view_third_page():
         else:
             str_similarity = str(similarity)
 
-        return render_template("index3.html", title="Similarity", content = ("%" + str_similarity))
+        return render_template("index3.html", title="Similarity", content = ("Similarity Rate : " + "%" + str_similarity))
     else:    
         return render_template("index3.html", title="Similarity")
 
