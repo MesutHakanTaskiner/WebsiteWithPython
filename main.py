@@ -129,15 +129,15 @@ def get_link(url):
     
     for link in url.findAll('a', attrs={'href': re.compile("^https://")}):
         links.append(link.get('href'))
-    
+
     first_url = links[0]
-    second_url = links[5]
+    second_url = links[4]
 
     return first_url, second_url
         
 def finding_frequency(text):
     
-    frequency = {}
+    frequency = {}  
 
     for word in text:
             count = frequency.get(word,0)
@@ -150,6 +150,12 @@ def finding_result_sum(result_values, frequency_values, result, frequency):
     sum_result = 0
     sum_frequency = 0
     frequency_total = {}
+
+    values_res = result.values()
+    values_freq = frequency.values()
+
+    total_sum_res = sum(values_res)
+    total_sum_freq = sum(values_freq)
 
     for name2 in result_values.intersection(frequency_values):
         sum_result = sum_result + result[name2]
@@ -174,15 +180,15 @@ def Indexing():
 
         page = requests.get(url)
 
-        page2 = requests.get('https://en.wikipedia.org/wiki/Mars')
-        page3 = requests.get('https://en.wikipedia.org/wiki/Black_hole')
-        page4 = requests.get('https://en.wikipedia.org/wiki/International_Space_Station')
+        page2 = requests.get('https://en.wikipedia.org/wiki/Earth')
+        page3 = requests.get('https://en.wikipedia.org/wiki/Venus')
+        page4 = requests.get('https://en.wikipedia.org/wiki/Jupiter')
         
         soup = BeautifulSoup(page.content, 'html.parser', from_encoding="iso-8859-1")
 
-        soup2 = BeautifulSoup(page2.content, 'html.parser',from_encoding="iso-8859-1")
-        soup3 = BeautifulSoup(page3.content, 'html.parser',from_encoding="iso-8859-1")
-        soup4 = BeautifulSoup(page4.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2 = BeautifulSoup(page2.content, 'html.parser', from_encoding="iso-8859-1")
+        soup3 = BeautifulSoup(page3.content, 'html.parser', from_encoding="iso-8859-1")
+        soup4 = BeautifulSoup(page4.content, 'html.parser', from_encoding="iso-8859-1")
 
         links2_1, links2_2 = get_link(soup2)
         links3_1, links3_2 = get_link(soup3)
@@ -190,70 +196,70 @@ def Indexing():
 
         #2 sub-links derived from the 2nd link 
         page2_1 = requests.get(links2_1)
-        soup2_1 = BeautifulSoup(page2_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_1 = BeautifulSoup(page2_1.content, 'html.parser', from_encoding="iso-8859-1")
         page2_2 = requests.get(links2_2)
-        soup2_2 = BeautifulSoup(page2_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_2 = BeautifulSoup(page2_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         links2_1_1, links2_1_2 = get_link(soup2_1)
         links2_2_1, links2_2_2 = get_link(soup2_2)
 
         #4 sub-links derived from the 2.1 link
         page2_1_1 = requests.get(links2_1_1)
-        soup2_1_1 = BeautifulSoup(page2_1_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_1_1 = BeautifulSoup(page2_1_1.content, 'html.parser', from_encoding="iso-8859-1")
         page2_1_2 = requests.get(links2_1_2)
-        soup2_1_2 = BeautifulSoup(page2_1_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_1_2 = BeautifulSoup(page2_1_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         #4 sub-links derived from the 2.2 link
         page2_2_1 = requests.get(links2_2_1)
-        soup2_2_1 = BeautifulSoup(page2_2_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_2_1 = BeautifulSoup(page2_2_1.content, 'html.parser', from_encoding="iso-8859-1")
         page2_2_2 = requests.get(links2_2_2)
-        soup2_2_2 = BeautifulSoup(page2_2_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup2_2_2 = BeautifulSoup(page2_2_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         #2 sub-links derived from the 3nd link 
         page3_1 = requests.get(links3_1)
-        soup3_1 = BeautifulSoup(page3_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_1 = BeautifulSoup(page3_1.content, 'html.parser', from_encoding="iso-8859-1")
         page3_2 = requests.get(links3_2)
-        soup3_2 = BeautifulSoup(page3_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_2 = BeautifulSoup(page3_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         links3_1_1, links3_1_2 = get_link(soup3_1)
         links3_2_1, links3_2_2 = get_link(soup3_2)
 
         #4 sub-links derived from the 3.1 link
         page3_1_1 = requests.get(links3_1_1)
-        soup3_1_1 = BeautifulSoup(page3_1_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_1_1 = BeautifulSoup(page3_1_1.content, 'html.parser', from_encoding="iso-8859-1")
         page3_1_2 = requests.get(links3_1_2)
-        soup3_1_2 = BeautifulSoup(page3_1_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_1_2 = BeautifulSoup(page3_1_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         #4 sub-links derived from the 3.2 link
         page3_2_1 = requests.get(links3_2_1)
-        soup3_2_1 = BeautifulSoup(page3_2_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_2_1 = BeautifulSoup(page3_2_1.content, 'html.parser', from_encoding="iso-8859-1")
         page3_2_2 = requests.get(links3_2_2)
-        soup3_2_2 = BeautifulSoup(page3_2_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup3_2_2 = BeautifulSoup(page3_2_2.content, 'html.parser', from_encoding="iso-8859-1")
         
         #2 sub-links derived from the 4nd link 
         page4_1 = requests.get(links4_1)
-        soup4_1 = BeautifulSoup(page4_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_1 = BeautifulSoup(page4_1.content, 'html.parser', from_encoding="iso-8859-1")
         page4_2 = requests.get(links4_2)
-        soup4_2 = BeautifulSoup(page4_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_2 = BeautifulSoup(page4_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         links4_1_1, links4_1_2 = get_link(soup4_1)
         links4_2_1, links4_2_2 = get_link(soup4_2)
 
         #4 sub-links derived from the 4.1 link
         page4_1_1 = requests.get(links4_1_1)
-        soup4_1_1 = BeautifulSoup(page4_1_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_1_1 = BeautifulSoup(page4_1_1.content, 'html.parser', from_encoding="iso-8859-1")
         page4_1_2 = requests.get(links4_1_2)
-        soup4_1_2 = BeautifulSoup(page4_1_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_1_2 = BeautifulSoup(page4_1_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         #4 sub-links derived from the 4.2 link
         page4_2_1 = requests.get(links4_2_1)
-        soup4_2_1 = BeautifulSoup(page4_2_1.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_2_1 = BeautifulSoup(page4_2_1.content, 'html.parser', from_encoding="iso-8859-1")
         page4_2_2 = requests.get(links4_2_2)
-        soup4_2_2 = BeautifulSoup(page4_2_2.content, 'html.parser',from_encoding="iso-8859-1")
+        soup4_2_2 = BeautifulSoup(page4_2_2.content, 'html.parser', from_encoding="iso-8859-1")
 
         url2 = 'https://en.wikipedia.org/wiki/Mars'
-        url3 = 'https://en.wikipedia.org/wiki/Black_hole'
-        url4 = 'https://en.wikipedia.org/wiki/International_Space_Station'
+        url3 = 'https://en.wikipedia.org/wiki/Venus'
+        url4 = 'https://en.wikipedia.org/wiki/Jupiter'
 
         text_string = soup.get_text()
         
@@ -490,7 +496,7 @@ def Indexing():
         )
 
         tree3 = (
-        "\n~" + str(url3) + " %" + str(similarity_rate_3) + "\n   ~" + str(links3_1) + " %" + str(similarity_rate_3_1) + "\n    ~" + str(links3_2)
+        "\n~" + str(url3) + " %" + str(similarity_rate_3) + "\n   ~" + str(links3_1) + " %" + str(similarity_rate_3_1) + "\n   ~" + str(links3_2)
         + " %" + str(similarity_rate_3_2) + "\n      ~"+ str(links3_1_1) + " %" + str(similarity_rate_3_1_1) + "\n      ~" + str(links3_1_2) + " %" + str(similarity_rate_3_1_2)
         + "\n      ~" + str(links3_2_1) + " %" + str(similarity_rate_3_2_1) + "\n      ~"+ str(links3_2_2) + " %" + str(similarity_rate_3_2_2)
         )
@@ -533,9 +539,9 @@ def Semantic():
 
         page = requests.get(url)
 
-        page2 = requests.get('https://en.wikipedia.org/wiki/Mars')
-        page3 = requests.get('https://en.wikipedia.org/wiki/Black_hole')
-        page4 = requests.get('https://en.wikipedia.org/wiki/International_Space_Station')
+        page2 = requests.get('https://en.wikipedia.org/wiki/Earth')
+        page3 = requests.get('https://en.wikipedia.org/wiki/Venus')
+        page4 = requests.get('https://en.wikipedia.org/wiki/Jupiter')
         
         soup = BeautifulSoup(page.content, 'html.parser', from_encoding="iso-8859-1")
 
@@ -610,9 +616,9 @@ def Semantic():
         page4_2_2 = requests.get(links4_2_2)
         soup4_2_2 = BeautifulSoup(page4_2_2.content, 'html.parser',from_encoding="iso-8859-1")
 
-        url2 = 'https://en.wikipedia.org/wiki/Mars'
-        url3 = 'https://en.wikipedia.org/wiki/Black_hole'
-        url4 = 'https://en.wikipedia.org/wiki/International_Space_Station'
+        url2 = 'https://en.wikipedia.org/wiki/Earth'
+        url3 = 'https://en.wikipedia.org/wiki/Venus'
+        url4 = 'https://en.wikipedia.org/wiki/Jupiter'
 
         text_string = soup.get_text()
         
@@ -876,7 +882,7 @@ def Semantic():
         )
 
         tree3 = (
-        "\n~" + str(url3) + " %" + str(similarity_rate_3) + "\n   ~" + str(links3_1) + " %" + str(similarity_rate_3_1) + "\n    ~" + str(links3_2)
+        "\n~" + str(url3) + " %" + str(similarity_rate_3) + "\n   ~" + str(links3_1) + " %" + str(similarity_rate_3_1) + "\n   ~" + str(links3_2)
         + " %" + str(similarity_rate_3_2) + "\n      ~"+ str(links3_1_1) + " %" + str(similarity_rate_3_1_1) + "\n      ~" + str(links3_1_2) + " %" + str(similarity_rate_3_1_2)
         + "\n      ~" + str(links3_2_1) + " %" + str(similarity_rate_3_2_1) + "\n      ~"+ str(links3_2_2) + " %" + str(similarity_rate_3_2_2)
         )
