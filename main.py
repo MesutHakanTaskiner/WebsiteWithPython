@@ -151,12 +151,6 @@ def finding_result_sum(result_values, frequency_values, result, frequency):
     sum_frequency = 0
     frequency_total = {}
 
-    values_res = result.values()
-    values_freq = frequency.values()
-
-    total_sum_res = sum(values_res)
-    total_sum_freq = sum(values_freq)
-
     for name2 in result_values.intersection(frequency_values):
         sum_result = sum_result + result[name2]
         sum_frequency = sum_frequency + frequency[name2]
@@ -257,7 +251,7 @@ def Indexing():
         page4_2_2 = requests.get(links4_2_2)
         soup4_2_2 = BeautifulSoup(page4_2_2.content, 'html.parser', from_encoding="iso-8859-1")
 
-        url2 = 'https://en.wikipedia.org/wiki/Mars'
+        url2 = 'https://en.wikipedia.org/wiki/Earth'
         url3 = 'https://en.wikipedia.org/wiki/Venus'
         url4 = 'https://en.wikipedia.org/wiki/Jupiter'
 
@@ -362,7 +356,7 @@ def Indexing():
         frequency2_1 = finding_frequency(match_pattern2_1)
         frequency2_2 = finding_frequency(match_pattern2_2)
 
-        frequency3 = finding_frequency(match_pattern2)
+        frequency3 = finding_frequency(match_pattern3)
         frequency3_1 = finding_frequency(match_pattern3_1)
         frequency3_2 = finding_frequency(match_pattern3_2)
 
@@ -507,17 +501,17 @@ def Indexing():
         + "\n      ~" + str(links4_2_1) + " %" + str(similarity_rate_4_2_1) + "\n      ~"+ str(links4_2_2) + " %" + str(similarity_rate_4_2_2)
         )
 
-        if(similarity_overall_2 > similarity_overall_3 > similarity_overall_4):
+        if(similarity_rate_2 > similarity_rate_3 > similarity_rate_4):
             main_tree = "\n\n\n" + tree2 + "\n\n\n" + tree3 + "\n\n\n" + tree4
-        elif(similarity_overall_2 > similarity_overall_4 > similarity_overall_3):
+        elif(similarity_rate_2 > similarity_rate_4 > similarity_rate_3):
             main_tree = "\n\n\n" + tree2 + "\n\n\n" + tree4 + "\n\n\n" + tree3
-        elif(similarity_overall_3 > similarity_overall_4 > similarity_overall_2):
+        elif(similarity_rate_3 > similarity_rate_4 > similarity_rate_2):
             main_tree = "\n\n\n" + tree3 + "\n\n\n" + tree4 + "\n\n\n" + tree2
-        elif(similarity_overall_3 > similarity_overall_2 > similarity_overall_4):
+        elif(similarity_rate_3 > similarity_rate_2 > similarity_rate_4):
             main_tree = "\n\n\n" + tree3 + "\n\n\n" + tree2 + "\n\n\n" + tree4
-        elif(similarity_overall_4 > similarity_overall_2 > similarity_overall_3):
+        elif(similarity_rate_4 > similarity_rate_2 > similarity_rate_3):
             main_tree = "\n\n\n" + tree4 + "\n\n\n" + tree2 + "\n\n\n" + tree3
-        elif(similarity_overall_4 > similarity_overall_3 > similarity_overall_2):
+        elif(similarity_rate_4 > similarity_rate_3 > similarity_rate_2):
             main_tree = "\n\n\n" + tree4 + "\n\n\n" + tree3 + "\n\n\n" + tree2
        
         sorted_overall_dict = sorted(similarity_overall.items(), key=operator.itemgetter(1), reverse=True)
@@ -721,7 +715,7 @@ def Semantic():
         frequency2_1 = finding_frequency(match_pattern2_1)
         frequency2_2 = finding_frequency(match_pattern2_2)
 
-        frequency3 = finding_frequency(match_pattern2)
+        frequency3 = finding_frequency(match_pattern3)
         frequency3_1 = finding_frequency(match_pattern3_1)
         frequency3_2 = finding_frequency(match_pattern3_2)
 
@@ -893,17 +887,17 @@ def Semantic():
         + "\n      ~" + str(links4_2_1) + " %" + str(similarity_rate_4_2_1) + "\n      ~"+ str(links4_2_2) + " %" + str(similarity_rate_4_2_2)
         )
 
-        if(similarity_overall_2 > similarity_overall_3 > similarity_overall_4):
+        if(similarity_rate_2 > similarity_rate_3 > similarity_rate_4):
             main_tree = "\n\n\n" + tree2 + "\n\n\n" + tree3 + "\n\n\n" + tree4
-        elif(similarity_overall_2 > similarity_overall_4 > similarity_overall_3):
+        elif(similarity_rate_2 > similarity_rate_4 > similarity_rate_3):
             main_tree = "\n\n\n" + tree2 + "\n\n\n" + tree4 + "\n\n\n" + tree3
-        elif(similarity_overall_3 > similarity_overall_4 > similarity_overall_2):
+        elif(similarity_rate_3 > similarity_rate_4 > similarity_rate_2):
             main_tree = "\n\n\n" + tree3 + "\n\n\n" + tree4 + "\n\n\n" + tree2
-        elif(similarity_overall_3 > similarity_overall_2 > similarity_overall_4):
+        elif(similarity_rate_3 > similarity_rate_2 > similarity_rate_4):
             main_tree = "\n\n\n" + tree3 + "\n\n\n" + tree2 + "\n\n\n" + tree4
-        elif(similarity_overall_4 > similarity_overall_2 > similarity_overall_3):
+        elif(similarity_rate_4 > similarity_rate_2 > similarity_rate_3):
             main_tree = "\n\n\n" + tree4 + "\n\n\n" + tree2 + "\n\n\n" + tree3
-        elif(similarity_overall_4 > similarity_overall_3 > similarity_overall_2):
+        elif(similarity_rate_4 > similarity_rate_3 > similarity_rate_2):
             main_tree = "\n\n\n" + tree4 + "\n\n\n" + tree3 + "\n\n\n" + tree2
        
         sorted_overall_dict = sorted(similarity_overall.items(), key=operator.itemgetter(1), reverse=True)
