@@ -15,7 +15,7 @@ def view_home():
     return render_template("home.html", title="Home page", content="Web Indexing")
 
 @app.route("/Frequency", methods=["POST", "GET"])
-def view_first_page():
+def Frequency():
     if request.method == "POST":
         url = request.form["url"]
         page = requests.get(url)
@@ -29,13 +29,17 @@ def view_first_page():
         for word in match_pattern:
             count = frequency.get(word,0)
             frequency[word] = count + 1
+        
+        total_frequency = ""
+        for key, value in sorted(frequency.items(), key=operator.itemgetter(1), reverse=True):
+            total_frequency = total_frequency + "   ~{}: {}".format(key, value) + "\n"
 
-        return render_template("index.html", title="Frequency", content = json.dumps(frequency, indent=1))
+        return render_template("index.html", title="Frequency", content = total_frequency)
     else:
         return render_template("index.html", title="Frequency")
 
 @app.route("/KeyWord", methods=["POST", "GET"])
-def view_second_page():
+def KeyWord():
     if request.method == "POST":
         url = request.form["url"]
         page = requests.get(url)
@@ -57,7 +61,7 @@ def view_second_page():
         return render_template("index2.html", title="KeyWord")
 
 @app.route("/Similarity", methods=["POST", "GET"])
-def view_third_page():
+def Similarity():
     if request.method == "POST":
         url = request.form["url"]
         url2 = request.form["url2"]
@@ -164,7 +168,7 @@ def finding_result_sum(result_values, frequency_values, result, frequency):
     return similarity
 
 @app.route("/Indexing", methods=["POST", "GET"])
-def view_fourth_page():
+def Indexing():
     if request.method == "POST":
         url = request.form["url"]
 
@@ -523,7 +527,7 @@ def view_fourth_page():
         return render_template("index4.html", title="Indexing")
 
 @app.route("/Semantic", methods=["POST", "GET"])
-def view_fifth_page():
+def Semantic():
     if request.method == "POST":
         url = request.form["url"]
 
@@ -737,7 +741,7 @@ def view_fifth_page():
 
         # KeyWords for first link
         result = dict(sorted(frequency.items(), key = itemgetter(1), reverse = True)[:6])
-        
+
         keywordlist = []
 
         for key in result.keys():
